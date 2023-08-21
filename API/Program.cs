@@ -1,3 +1,5 @@
+using Application.Activities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -15,6 +17,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );
+
+builder.Services.AddMediatR(typeof(List.Handler));
 
 var app = builder.Build();
 
